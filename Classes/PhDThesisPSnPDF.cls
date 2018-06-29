@@ -35,6 +35,7 @@
 \newif\ifsetLanguage\setLanguagefalse         % Language is not set
 
 \newif\ifPHD@spanish\PHD@spanishfalse         % Spanish
+\newif\ifsetPHDLanguageSpanish\setPHDLanguageSpanishfalse    % Spanish boolean
 \DeclareOption{spanish}{
   \ifsetLanguage
     \ClassWarning{PhDThesisPSnPDF}{Language selection conflict: A language was
@@ -43,6 +44,7 @@
   \else
     \PHD@spanishtrue
     \setLanguagetrue
+    \setPHDLanguageSpanishtrue
   \fi
 }
 
@@ -323,7 +325,8 @@ supported!}
     \ifPHD@spanish
       \RequirePackage[spanish]{babel} % Spanish
       \setLanguagetrue
-      \message{PhDThesisPSnPDF: Using custom font}
+      \setPHDLanguageSpanishtrue
+      \message{PhDThesisPSnPDF: Babel Spanish language loaded}
     \else
       \setLanguagefalse
       \message{PhDThesisPSnPDF: No language is set}
@@ -948,7 +951,11 @@ wish to left align your text}
 \newcommand{\advisorlinewidth}[1]{\renewcommand{\@advisorlinewidth}{#1}}
 
 % Submission Text
-\newcommand{\submissiontext}{This dissertation is submitted for the degree of }
+\ifPHD@spanish
+  \newcommand{\submissiontext}{Memoria para la obtención del grado de}
+\else
+  \newcommand{\submissiontext}{This dissertation is submitted for the degree of }
+\fi
 
 % keywords (These keywords will appear in the PDF meta-information
 % called `pdfkeywords`.)
@@ -1070,7 +1077,11 @@ wish to left align your text}
 \newenvironment{declaration}{
 \cleardoublepage
 \setsinglecolumn
-\chapter*{\centering \Large Declaration}
+\ifPHD@spanish
+  \chapter*{\centering \Large Declaración}
+\else
+  \chapter*{\centering \Large Declaration}
+\fi
 \thispagestyle{empty}
 }{
 \flushright
@@ -1088,29 +1099,53 @@ wish to left align your text}
 \newenvironment{acknowledgements}{
 \cleardoublepage
 \setsinglecolumn
-\chapter*{\centering \Large Acknowledgements}
+\ifPHD@spanish
+  \chapter*{\centering \Large Agradecimientos}
+\else
+  \chapter*{\centering \Large Acknowledgements}
+\fi
 \thispagestyle{empty}
 }
 
 
 
 % ******************************* Nomenclature *********************************
-\RequirePackage[intoc]{nomencl}
-\makenomenclature
-\renewcommand{\nomgroup}[1]{%
-\ifthenelse{\equal{#1}{A}}{\item[\textbf{Roman Symbols}]}{%
-\ifthenelse{\equal{#1}{G}}{\item[\textbf{Greek Symbols}]}{%
-\ifthenelse{\equal{#1}{Z}}{\item[\textbf{Acronyms / Abbreviations}]}{%
-\ifthenelse{\equal{#1}{R}}{\item[\textbf{Superscripts}]}{%
-\ifthenelse{\equal{#1}{S}}{\item[\textbf{Subscripts}]}{%
-\ifthenelse{\equal{#1}{X}}{\item[\textbf{Other Symbols}]}
-{}
-}% matches mathematical symbols > X
-}% matches Subscripts           > S
-}% matches Superscripts         > R
-}% matches Abbreviations        > Z
-}% matches Greek Symbols        > G
-}% matches Roman Symbols        > A
+\ifPHD@spanish
+  \RequirePackage[spanish,intoc]{nomencl}
+  \makenomenclature
+  \renewcommand{\nomname}{Nomenclatura}
+  \renewcommand{\nomgroup}[1]{%
+  \ifthenelse{\equal{#1}{A}}{\item[\textbf{Símbolos Romanos}]}{%
+  \ifthenelse{\equal{#1}{G}}{\item[\textbf{Símbolos Griegos}]}{%
+  \ifthenelse{\equal{#1}{Z}}{\item[\textbf{Acrónimos / Abreviaturas}]}{%
+  \ifthenelse{\equal{#1}{R}}{\item[\textbf{Superíndices}]}{%
+  \ifthenelse{\equal{#1}{S}}{\item[\textbf{Subíndices}]}{%
+  \ifthenelse{\equal{#1}{X}}{\item[\textbf{Otros Símbolos}]}
+  {}
+  }% matches mathematical symbols > X
+  }% matches Subscripts           > S
+  }% matches Superscripts         > R
+  }% matches Abbreviations        > Z
+  }% matches Greek Symbols        > G
+  }% matches Roman Symbols        > A
+\else
+  \RequirePackage[intoc]{nomencl}
+  \makenomenclature
+  \renewcommand{\nomgroup}[1]{%
+  \ifthenelse{\equal{#1}{A}}{\item[\textbf{Roman Symbols}]}{%
+  \ifthenelse{\equal{#1}{G}}{\item[\textbf{Greek Symbols}]}{%
+  \ifthenelse{\equal{#1}{Z}}{\item[\textbf{Acronyms / Abbreviations}]}{%
+  \ifthenelse{\equal{#1}{R}}{\item[\textbf{Superscripts}]}{%
+  \ifthenelse{\equal{#1}{S}}{\item[\textbf{Subscripts}]}{%
+  \ifthenelse{\equal{#1}{X}}{\item[\textbf{Other Symbols}]}
+  {}
+  }% matches mathematical symbols > X
+  }% matches Subscripts           > S
+  }% matches Superscripts         > R
+  }% matches Abbreviations        > Z
+  }% matches Greek Symbols        > G
+  }% matches Roman Symbols        > A
+\fi
 
 % To add nomenclature in the header
 \renewcommand{\nompreamble}{\markboth{\nomname}{\nomname}}
@@ -1189,7 +1224,11 @@ wish to left align your text}
 % Normal abstract in the thesis
   \cleardoublepage
   \setsinglecolumn
-  \chapter*{\centering \Large Abstract}
+  \ifPHD@spanish
+    \chapter*{\centering \Large Resumen}
+  \else
+    \chapter*{\centering \Large Abstract}
+  \fi
   \thispagestyle{empty}
 \fi
 }

@@ -1,18 +1,30 @@
 % ************************ Thesis Information & Meta-data **********************
 %% The title of the thesis
-\title{Writing your PhD thesis in \texorpdfstring{\\ \LaTeX2e}{LaTeX2e}}
+\ifsetPHDLanguageSpanish
+  \title{Escribiendo tu tesis doctoral en \texorpdfstring{\\ \LaTeX2e}{LaTeX2e}}
+\else
+  \title{Writing your PhD thesis in \texorpdfstring{\\ \LaTeX2e}{LaTeX2e}}
+\fi
 %\texorpdfstring is used for PDF metadata. Usage:
 %\texorpdfstring{LaTeX_Version}{PDF Version (non-latex)} eg.,
 %\texorpdfstring{$sigma$}{sigma}
 
 %% Subtitle (Optional)
-\subtitle{Using the ULL template}
+\ifsetPHDLanguageSpanish
+  \subtitle{Usando la plantilla ULL}
+\else
+  \subtitle{Using the ULL template}
+\fi
 
 %% The full name of the author
 \author{Krishna Kumar}
 
 %% Department (eg. Department of Engineering, Maths, Physics)
-\dept{Department of Computer Science}
+\ifsetPHDLanguageSpanish
+  \dept{Departmento de Ingeniería Informática y de Sistemas}
+\else
+  \dept{Department of Computer Science}
+\fi
 
 %% University and Crest
 \university{University of La Laguna}
@@ -60,7 +72,11 @@
 %\renewcommand{\submissiontext}{change the default text here if needed}
 
 %% Full title of the Degree
-\degreetitle{Doctor of Philosophy}
+\ifsetPHDLanguageSpanish
+  \degreetitle{Doctor en Ingeniería Informática}
+\else
+  \degreetitle{Doctor of Philosophy}
+\fi
 
 %% College affiliation (optional)
 %\college{King's College}
