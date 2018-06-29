@@ -31,6 +31,45 @@
 \newif\ifPHD@index\PHD@indexfalse
 \DeclareOption{index}{\PHD@indextrue}
 
+% ****************************** Define Language *******************************
+\newif\ifsetLanguage\setLanguagefalse         % Language is not set
+
+\newif\ifPHD@spanish\PHD@spanishfalse         % Spanish
+\DeclareOption{spanish}{
+  \ifsetLanguage
+    \ClassWarning{PhDThesisPSnPDF}{Language selection conflict: A language was
+      already specified. Please check the document class options in case you 
+      have defined two languages.}
+  \else
+    \PHD@spanishtrue
+    \setLanguagetrue
+  \fi
+}
+
+\newif\ifPHD@british\PHD@britishfalse         % British
+\DeclareOption{british}{
+  \ifsetLanguage
+    \ClassWarning{PhDThesisPSnPDF}{Language selection conflict: A language was
+      already specified. Please check the document class options in case you 
+      have defined two languages.}
+  \else
+    \PHD@britishtrue
+    \setLanguagetrue
+  \fi
+}
+
+\newif\ifPHD@american\PHD@americanfalse         % American
+\DeclareOption{american}{
+  \ifsetLanguage
+    \ClassWarning{PhDThesisPSnPDF}{Language selection conflict: A language was
+      already specified. Please check the document class options in case you 
+      have defined two languages.}
+  \else
+    \PHD@americantrue
+    \setLanguagetrue
+  \fi
+}
+
 % ******************************* Font Option **********************************
 \newif\ifsetFont\setFontfalse                 % Font is not set
 
@@ -269,6 +308,41 @@ supported!}
   \pdfbookmark[0]{\contentsname}{Contents}
   \temptableofcontents
 }
+
+% *************************** Language and hyphenation *************************
+\ifPHD@british
+  \RequirePackage[british]{babel}  % British
+  \setLanguagetrue
+  \message{PhDThesisPSnPDF: Babel British language loaded}
+\else
+  \ifPHD@american
+    \RequirePackage[american]{babel} % American
+    \setLanguagetrue
+    \message{PhDThesisPSnPDF: Babel American language loaded}
+  \else
+    \ifPHD@spanish
+      \RequirePackage[spanish]{babel} % Spanish
+      \setLanguagetrue
+      \message{PhDThesisPSnPDF: Using custom font}
+    \else
+      \setLanguagefalse
+      \message{PhDThesisPSnPDF: No language is set}
+    \fi % Spanish Language
+  \fi % American
+\fi % British
+
+\ifpdf
+  % Convert eps figures to pdf
+  \RequirePackage{epstopdf}
+  \RequirePackage[pdftex]{graphicx}
+  \DeclareGraphicsExtensions{.png, .jpg, .pdf}
+  \pdfcompresslevel=9
+  \graphicspath{{Figs/Raster/}{Figs/}}
+\else
+  \RequirePackage{graphicx}
+  \DeclareGraphicsExtensions{.eps, .ps}
+  \graphicspath{{Figs/Vector/}{Figs/}}
+\fi
 
 % *************************** Graphics and Figures *****************************
 \RequirePackage[usenames, dvipsnames]{color}
