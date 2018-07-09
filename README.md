@@ -14,6 +14,8 @@ ULL PhD thesis template
 --------------------------------------------------------------------------------
 ## Features
 
+*   New option for language selection in document class. ULL PhD guidelines. 
+
 *   Conforms to the Student Registry PhD dissertation guidelines and CUED PhD guidelines
 
 *   Supports LaTeX, XeLaTeX and LuaLaTeX
@@ -160,6 +162,9 @@ It supports the following custom options in the documentclass in thesis.tex:
 *   `11pt` or `12pt`: The University of Cambridge guidelines recommend using a minimum font size of 11pt (12pt is preferred) and 10pt for footnotes. This template also supports `10pt`.
 
 *   `oneside` or `twoside` (default): This is especially useful for printing double side (twoside) or single side.
+
+*   `spanish`, `british` or `american`: This option enables babel hyphenation  for spanish, british and american language patterns. Also some some macros are redefined accordingly.
+
 
 *   `print`: Supports Print and Online Version with different page margins and hyperlink styles.
     Use `print` in the options to activate Print Version with appropriate margins and page layout and view styles.
