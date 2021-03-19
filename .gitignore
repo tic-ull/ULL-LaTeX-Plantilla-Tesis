@@ -38,6 +38,3 @@ thesis.run.xml*
 *.latexmkrc*
 *_latexmk*
 
-#
-thesis.pdf
-
