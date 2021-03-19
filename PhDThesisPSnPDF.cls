@@ -4,15 +4,15 @@
 %%                                                                            %%
 %% A PhD thesis LaTeX template for Cambridge University Engineering Department%%
 %%                                                                            %%
-%% Version: v2.3.1                                                             %%
+%% Version: v2.4                                                              %%
 %% Authors: Krishna Kumar                                                     %%
-%% License: MIT License (c) 2016 Krishna Kumar                                %%
+%% License: MIT License (c) 2016-2018 Krishna Kumar                           %%
 %% GitHub Repo: https://github.com/kks32/phd-thesis-template/                 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % ************************** Class Identification ******************************
-\newcommand\fileversion{2.3.1}
-\newcommand\filedate{2016/04/23}
+\newcommand\fileversion{2.4}
+\newcommand\filedate{2018/04/12}
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{PhDThesisPSnPDF}[\filedate\space A PhD thesis class file
  by Krishna Kumar (v\fileversion)]
@@ -634,16 +634,16 @@ supported!}
   \usepackage[]{unicode-math}
   \setmainfont[
     Extension = .otf,
-    UprightFont = *-regular,
-    BoldFont = *-bold,
-    ItalicFont = *-italic,
-    BoldItalicFont = *-bolditalic,
-  ]{xits}
+    UprightFont = *-Regular,
+    BoldFont = *-Bold,
+    ItalicFont = *-Italic,
+    BoldItalicFont = *-BoldItalic,
+  ]{XITS}
   
   \setmathfont[ 
     Extension = .otf,
-    BoldFont = *bold,
-  ]{xits-math}
+    BoldFont = XITSMath-Bold,
+  ]{XITSMath-Regular}
   
 \else
   % default: pdfLaTeX
@@ -966,6 +966,23 @@ wish to left align your text}
 % called `pdfsubject`.)
 \newcommand{\@subject}{}
 \newcommand{\subject}[1]{\renewcommand{\@subject}{#1}}
+
+% Declaration title text
+\newcommand{\@declarationtitle}{Declaration}
+
+% Acknowledgment title text
+\newcommand{\@acknowledgementstitle}{Acknowledgements}
+
+% Abstract title text
+\newcommand{\@abstracttitle}{Abstract}
+
+% Names for the nomenclature groups
+\newcommand{\@nomenclatureromans}{Roman Symbols}
+\newcommand{\@nomenclaturegreeks}{Greek Symbols}
+\newcommand{\@nomenclatureacronyms}{Acronyms / Abbreviations}
+\newcommand{\@nomenclaturesuperscripts}{Superscripts}
+\newcommand{\@nomenclaturesubscripts}{Subscripts}
+\newcommand{\@nomenclatureothers}{Other Symbols}
 
 
 % These macros define an environment for front matter that is always
